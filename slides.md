@@ -3,19 +3,18 @@
 theme: default
 title: Diseño Factorial
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+  ## Exposición de DBCA (Análisis y Diseño de Experimentos).
 
-  Learn more at [Sli.dev](https://sli.dev)
 class: text-center
 drawings:
   persist: false
 transition: slide-left
 mdc: true
 ---
-
-# Diseño Factorial
-
+### Universidad Nacional del Callao
+##### Escuela Profesional de Física
+# DCBA
+##### Profesora:  
 Antonio Arias Romero
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1U3r1I-UdwWemw6EZmWsaSKAdf8bUqJ3bLQ&s">
 
@@ -44,134 +43,86 @@ Antonio Arias Romero
 transition: fade-out
 ---
 
-# What is Slidev?
+# Ejercicio
+En la siguiente tabla se muestran las concentraciones de cobre en el suelo, expresadas como media ± desviación estándar (n = 3), para cinco niveles de contaminación definidos experimentalmente y medidas tras cada uno de los cuatro ensayos realizados entre febrero de 2017 y marzo de 2018.
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+![Local Image](/image-1.png)
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
+Se hará uso del diseño completamente aleatorizado
 <style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
+p {
+ color: #222;
+ display: block;
+ padding: 1rem 0;
+font-size: 1.3rem;
 }
+  img {
+    margin: 1rem auto;
+  }
 </style>
-
-<!--
-Here is another comment.
--->
 
 ---
 transition: slide-up
 level: 2
 ---
 
-# Navigation
+# Objetivos del Análisis Estadístico
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
 
-## Keyboard Shortcuts
-
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+* Comparar respuestas entre niveles de cobre.
+* Verificar supuestos del ANOVA
+* Realizar comparaciones múltiples post-hoc
+* Cuantificar el tamaño del efecto y la potencia estadística
+* Comprobar la estabilidad de los niveles definidos.
+* Verificar la estabilidad de los tratamientos. Confirmar que, a lo largo de los cuatro ensayos, los cinco niveles de cobre en el suelo se mantuvieron constantes y comparables entre sí.
 
 ---
 layout: two-cols
 layoutClass: gap-16
 ---
 
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1" />
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
+# Análisis
+Primero comenzaremos estructurando la tabla en excel para la lectura de datos
+| Ensayo | Intento | Media |
+|---------------|---------------|---------------|
+| 1        | 1       | 17        |
+| 1        | 2       | 78 |
+| 1        | 3       | 272 |
+| 1        | 4       | 340 |
+| 1        | 5       | 479 |
+| 2        | 1 | 12 |
+| 2        | 2 | 81 |
+| 2        | 3 | 294 |
+| 2        | 4 | 352 |
 ::right::
+| Ensayo| Intento | Media |
+|---|-----|---|
+| 2        | 5 | 518 |
+| 3        | 1       | 23 |
+| 3        | 2       | 80 |
+| 3        | 3 | 251 |
+| 3        | 4 | 296 |
+| 3        | 5 | 409 |
+| 4        | 1 | 23 |
+| 4        | 2 | 85 |
+| 4        | 3 | 296 |
+| 4        | 4 | 367 |
+| 4        | 5 | 484 |
 
-<Toc text-sm minDepth="1" maxDepth="2" />
-
----
-layout: image-right
-image: https://cover.sli.dev
----
-
-# Code
-
-Use code snippets and get the highlighting directly, and even types hover!
-
-```ts [filename-example.ts] {all|4|6|6-7|9|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="342" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
 <style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
+table {
+   font-size: .6rem;
 }
 </style>
 
-<!--
-Notes can also sync with clicks
+---
+transition: slide-up
+level: 2
+---
 
-[click] This will be highlighted after the first click
+# Modelo
 
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
+Usaremos el modelo DCBA
 
 ---
 level: 2
