@@ -67,9 +67,9 @@
 # ¿Te gustaría profundizar en cómo calcular la potencia estadística en función del SD o explorar ejemplos de análisis factorial?
 
 
-# install.packages("car")
-# install.packages("readxl");
-# install.packages("lmtest")
+install.packages("car")
+install.packages("readxl");
+install.packages("lmtest")
 library(lmtest)
 
 library(readxl)
@@ -78,7 +78,7 @@ library(car)
 
 # https://www.mdpi.com/2071-1050/11/22/6215?utm_source=chatgpt.com#table_body_display_sustainability-11-06215-t001
 
-data <- read_xlsx("./scripts/COBRE.xlsx")
+data <- read_xlsx("./COBRE.xlsx")
 # View(data)
 
 attach(data)
@@ -101,28 +101,28 @@ res <- residuals(model)
 summary(res)
 
 
-shapiro.test(res)
+# shapiro.test(res)
 
-qqnorm(res)
-qqline(res)
+# qqnorm(res)
+# qqline(res)
 
-# prueba de independencia
-#prueba de independencia de los residuos(DURBIN WATSON), Ho: hay independencia de residuos, H1: no hay
-#pv>0.05 no se rechaza HO
-dwtest(MEDIA~TRIAL + NIVEL, data= data)
-# DURBIN WATSON(AUTOCORRELACION ENTRE RESIDUOS EN RL: DW=2 NO HAY AUTOC, DW<2 
-#HAY AUTOCORRELACION POSITIVA, DW>2 HAY CORRELACION NEGATIVA, DW= 0 AUTOCORRELACIÓN 
-#POSITIVA MUY FUERTE, DW= 4 AUTOCORRELACION NEGATIVA MUY FUERTE)
-durbinWatsonTest(aov(MEDIA~TRIAL+NIVEL
-, data= data))
+# # prueba de independencia
+# #prueba de independencia de los residuos(DURBIN WATSON), Ho: hay independencia de residuos, H1: no hay
+# #pv>0.05 no se rechaza HO
+# dwtest(MEDIA~TRIAL + NIVEL, data= data)
+# # DURBIN WATSON(AUTOCORRELACION ENTRE RESIDUOS EN RL: DW=2 NO HAY AUTOC, DW<2 
+# #HAY AUTOCORRELACION POSITIVA, DW>2 HAY CORRELACION NEGATIVA, DW= 0 AUTOCORRELACIÓN 
+# #POSITIVA MUY FUERTE, DW= 4 AUTOCORRELACION NEGATIVA MUY FUERTE)
+# durbinWatsonTest(aov(MEDIA~TRIAL+NIVEL
+# , data= data))
 
-plot(resid(aov(MEDIA~TRIAL+NIVEL, data=data)),type= "p", col= "blue", ylab= "residuos", xlab= "Observación", main= "Residuos vs Orden de Orservación")
-abline(h=0, lty=2, col="red")
+# plot(resid(aov(MEDIA~TRIAL+NIVEL, data=data)),type= "p", col= "blue", ylab= "residuos", xlab= "Observación", main= "Residuos vs Orden de Orservación")
+# abline(h=0, lty=2, col="red")
 
-install.packages("ggplot2")
-library(ggplot2)
-acf(resid(aov(MEDIAS~TRIAL+NIVEL, data= data)), main = "ACF DE LOS RESIDUOS")
+# install.packages("ggplot2")
+# library(ggplot2)
+# acf(resid(aov(MEDIAS~TRIAL+NIVEL, data= data)), main = "ACF DE LOS RESIDUOS")
 
-leveneTest(MEDIAS~TRIAL, data =data, center= mean)
+# leveneTest(MEDIAS~TRIAL, data =data, center= mean)
 
-leveneTest(MEDIAS~NIVEL, data =data, center= mean)
+# leveneTest(MEDIAS~NIVEL, data =data, center= mean)
