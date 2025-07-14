@@ -1,6 +1,7 @@
 import pandas as pd
 import statsmodels.formula.api as smf
-
+import tracemalloc
+tracemalloc.start()
 # Lee el mismo CSV que usan los demás
 df = pd.read_csv("data.csv")
 
@@ -15,3 +16,5 @@ res_df = pd.DataFrame({
     'pvalue': modelo.pvalues
 })
 res_df.to_csv("resultados_regresion_Python.csv", index=True)
+current, peak = tracemalloc.get_traced_memory()
+print(f"PEAK_MEMORY:{peak / 1024**2}")
